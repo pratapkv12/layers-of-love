@@ -97,12 +97,12 @@
       background-position: center;
       text-align: center;
       color: white;
-      background-color: #fff; /* Fallback background */
+      background-color: #ecd7d7ea; /* Fallback background */
     }
 
     .hero-img img {
-      width: 150px;
-      height: 150px;
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
       object-fit: cover;
       margin-bottom: 20px;
@@ -156,60 +156,85 @@
       line-height: 1.6;
     }
 
-    /* Cakes Section */
+    /* Our Cakes Section */
+    /* Hover Effect */
+    .card:hover {
+      transform: translateY(-10px); /* Slight upward lift */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow */
+    }
+
+    /* Button Hover */
+    .card button:hover {
+      background-color: #e74c3c; /* Change the button color */
+      color: #fff;
+    }
+
     .cake-cards {
-      padding: 50px;
-      text-align: center;
+      padding: 50px 20px;
+      background-color: #fff;
     }
 
     .center-heading {
-      font-size: 2.5em;
-      margin-bottom: 20px;
+      text-align: center;
+      font-size: 2rem;
     }
 
     .cards-container {
       display: flex;
-      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
     }
 
     .card {
-      background-color: white;
-      border-radius: 10px;
+      background-color: #f7f7f7;
+      border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 30%;
-      transition: transform 0.3s;
+      width: 300px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s;
     }
 
     .card img {
       width: 100%;
-      height: 200px;
+      height: 200px; /* Fixed height for uniformity */
       object-fit: cover;
-    }
-
-    .card-content {
-      padding: 20px;
-      text-align: center;
+      border-radius: 8px;
     }
 
     .card h3 {
-      font-size: 1.8em;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    .card label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .card select {
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 1rem;
     }
 
     .card button {
-      background-color: #d44b42;
-      color: white;
-      padding: 10px 15px;
       margin-top: 10px;
-      border-radius: 5px;
-      transition: background-color 0.3s;
+      background-color: #d35454;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
     .card button:hover {
-      background-color: #f36756;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
+      background-color: #b04141;
     }
 
     /* Contact Section */
@@ -309,132 +334,287 @@
       margin-top: 10px;
       display: inline-block;
     }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 1024px) {
+      header {
+        padding: 15px 20px;
+      }
+
+      nav ul {
+        margin-left: 50px;
+        gap: 15px;
+      }
+
+      .hero {
+        padding: 60px 10px;
+      }
+
+      .cake-cards {
+        padding: 30px 10px;
+      }
+
+      .card {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      nav ul {
+        margin-left: 0;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .hero-img img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .cake-cards {
+        padding: 20px 5px;
+      }
+
+      .card {
+        width: 90%;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Header -->
   <header>
-    <div class="logo">
-      <h1>Layers of Love</h1>
+    <div class="logo" id="header">
+      <h1>Layers Of Love</h1>
     </div>
     <nav>
       <ul>
-        <li><a href="#top">Home</a></li>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#cakes">Our Cakes</a></li>
+        <li><a href="#header">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#cakes">Cakes</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="auth-buttons">
-      <button class="signup-btn" onclick="openPopup('signup')">Sign Up</button>
-      <button class="login-btn" onclick="openPopup('login')">Login</button>
+      <button class="signup-btn" onclick="showSignUp()">Sign Up</button>
+      <button class="login-btn" onclick="showLogin()">Login</button>
     </div>
   </header>
-  
-  <!-- Pop-up for Sign Up -->
-  <div id="signup-popup" class="popup-container">
-    <div class="popup">
-      <h2>Sign Up</h2>
-      <input type="text" placeholder="Username">
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
-      <button>Sign Up</button>
-      <span class="close-popup" onclick="closePopup()">Close</span>
-    </div>
-  </div>
-
-  <!-- Pop-up for Login -->
-  <div id="login-popup" class="popup-container">
-    <div class="popup">
-      <h2>Login</h2>
-      <input type="text" placeholder="Username">
-      <input type="password" placeholder="Password">
-      <button>Login</button>
-      <span class="close-popup" onclick="closePopup()">Close</span>
-    </div>
-  </div>
 
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-img">
       <img src="lol-logo.jpg" alt="Bakery Logo">
     </div>
+    <h1 class="large-logo">Welcome to Layers Of Love</h1>
     <div class="hero-text">
-      <h2 class="large-logo">Welcome to Layers of Love</h2>
-      <p>Where every layer tells a story of sweetness</p>
-      <div class="hero-buttons">
-        <button class="explore-btn">Explore Our Cakes</button>
-        <button class="buy-btn">Order Now</button>
-      </div>
+      <p>Welcome to our bakery! Freshly baked delights for every occasion.</p>
+    </div>
+    <div class="hero-buttons">
+      <button class="explore-btn">Explore Our Cakes</button>
+      <button class="buy-btn">Order Now</button>
     </div>
   </section>
 
   <!-- About Us Section -->
   <section class="about-us" id="about">
     <h2>About Us</h2>
-    <p>We are a passionate bakery offering freshly baked cakes with love and care in every bite. Join us in a journey of delicious creations!</p>
+    <p>We specialize in creating delicious, beautifully decorated cakes that make every occasion extra special. Each cake is handmade with love and care to ensure the best quality.</p>
   </section>
 
-  <!-- Cakes Section -->
-  <section class="cake-cards" id="cakes">
-    <h2 class="center-heading">Our Delicious Cakes</h2>
-    <div class="cards-container">
-      <div class="card">
-        <img src="cake1.jpg" alt="Cake 1">
-        <div class="card-content">
-          <h3>Chocolate Delight</h3>
-          <button>Order Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="cake2.jpg" alt="Cake 2">
-        <div class="card-content">
-          <h3>Vanilla Dream</h3>
-          <button>Order Now</button>
-        </div>
-      </div>
-      <div class="card">
-        <img src="cake3.jpg" alt="Cake 3">
-        <div class="card-content">
-          <h3>Strawberry Heaven</h3>
-          <button>Order Now</button>
-        </div>
-      </div>
+ <!-- Cakes Section -->
+<section class="cake-cards" id="cakes">
+  <h2 class="center-heading">Our Cakes</h2>
+  <div class="cards-container">
+    <div class="card">
+      <img src="black-forest.jpg" alt="Cake Image">
+      <h3>Black Forest</h3>
+      <p>Classic Black Forest cake topped with cherries and whipped cream.</p>
+      <label for="size">Choose size:</label>
+      <select id="size">
+        <option value="500g">500g - ₹350</option>
+        <option value="750g">750g - ₹550</option>
+        <option value="1kg">1kg - ₹700</option>
+      </select>
+      <button>Add to Cart</button>
     </div>
-  </section>
 
-  <!-- Contact Us Section -->
+    <div class="card">
+      <img src="black-currant-cake.webp" alt="Cake Image">
+      <h3>Black Currant</h3>
+      <p>Refreshing Black Currant cake with rich fruit flavor and smooth cream.</p>
+      <label for="size2">Choose size:</label>
+      <select id="size2">
+        <option value="500g">500g - ₹350</option>
+        <option value="750g">750g - ₹550</option>
+        <option value="1kg">1kg - ₹700</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="truffel-choclate-cake.jpeg" alt="Cake Image">
+      <h3>Choco Truffle</h3>
+      <p>Rich and indulgent chocolate truffle cake with layers of ganache.</p>
+      <label for="size3">Choose size:</label>
+      <select id="size3">
+        <option value="500g">500g - ₹450</option>
+        <option value="750g">750g - ₹600</option>
+        <option value="1kg">1kg - ₹850</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="red-velvet-cake.jpg" alt="Cake Image">
+      <h3>Red Velvet</h3>
+      <p>Decadent red velvet cake with cream cheese frosting.</p>
+      <label for="size4">Choose size:</label>
+      <select id="size4">
+        <option value="500g">500g - ₹550</option>
+        <option value="750g">750g - ₹800</option>
+        <option value="1kg">1kg - ₹1100</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="butterscotch-cake.webp" alt="Cake Image">
+      <h3>Butterscotch</h3>
+      <p>Buttery butterscotch cake with crunchy caramel toppings.</p>
+      <label for="size5">Choose size:</label>
+      <select id="size5">
+        <option value="500g">500g - ₹450</option>
+        <option value="750g">750g - ₹600</option>
+        <option value="1kg">1kg - ₹750</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="vanilla-cake.jpg" alt="Cake Image">
+      <h3>Vanilla</h3>
+      <p>Classic vanilla cake with layers of fluffy cream and rich flavor.</p>
+      <label for="size6">Choose size:</label>
+      <select id="size6">
+        <option value="500g">500g - ₹350</option>
+        <option value="750g">750g - ₹550</option>
+        <option value="1kg">1kg - ₹700</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="strawberry-cake.jpg" alt="Cake Image">
+      <h3>Strawberry</h3>
+      <p>Sweet and tangy strawberry cake with fresh cream and fruit layers.</p>
+      <label for="size7">Choose size:</label>
+      <select id="size7">
+        <option value="500g">500g - ₹450</option>
+        <option value="750g">750g - ₹600</option>
+        <option value="1kg">1kg - ₹750</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="choco-vanilla.jpg" alt="Cake Image">
+      <h3>Choco Vanilla</h3>
+      <p>A delightful mix of chocolate and vanilla in one irresistible cake.</p>
+      <label for="size8">Choose size:</label>
+      <select id="size8">
+        <option value="500g">500g - ₹400</option>
+        <option value="750g">750g - ₹600</option>
+        <option value="1kg">1kg - ₹800</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+
+    <div class="card">
+      <img src="dream-cake.jpg" alt="Cake Image">
+      <h3>Dream Cake</h3>
+      <p>Luxury dream cake with rich flavors and smooth frosting.</p>
+      <label for="size9">Choose size:</label>
+      <select id="size9">
+        <option value="500g">500g - ₹550</option>
+        <option value="1kg">1kg - ₹1100</option>
+      </select>
+      <button>Add to Cart</button>
+    </div>
+  </div>
+</section>
+
+  <!-- Contact Section -->
   <section class="contact-us" id="contact">
     <h2>Contact Us</h2>
     <ul>
-      <li><i class="bi bi-envelope"></i> info@layersoflove.com</li>
-      <li><i class="bi bi-telephone"></i> +123 456 7890</li>
-      <li><i class="bi bi-geo-alt"></i> 123 Cake Street, Dessert City</li>
+      <li><i class="bi bi-envelope"></i>layersoflove@example.com</li>
+      <li><i class="bi bi-phone"></i>+91 9876543210</li>
     </ul>
   </section>
 
-  <!-- Footer -->
+  <!-- Footer Section -->
   <footer>
     <nav class="footer-nav">
       <ul>
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#cakes">Our Cakes</a></li>
+        <li><a href="#header">home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#cakes">Cakes</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
     <div class="social-icons">
       <a href="#"><i class="bi bi-facebook"></i></a>
-      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="https://www.instagram.com/layers_of_love26?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw== "><i class="bi bi-instagram"></i></a>
       <a href="#"><i class="bi bi-twitter"></i></a>
     </div>
+    <p>&copy; 2024 Layers Of Love. All Rights Reserved.</p>
   </footer>
 
+  <!-- Pop-ups -->
+  <div class="popup-container" id="signupPopup">
+    <div class="popup">
+      <h2>Sign Up</h2>
+      <input type="name" placeholder="Name">
+      <input type="phone number" placeholder="Phone No.">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Sign Up</button>
+      <span class="close-popup" onclick="hideSignUp()">Close</span>
+    </div>
+  </div>
+
+  <div class="popup-container" id="loginPopup">
+    <div class="popup">
+      <h2>Login</h2>
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+      <span class="close-popup" onclick="hideLogin()">Close</span>
+    </div>
+  </div>
+
+  <!-- JavaScript for Pop-up Functionality -->
   <script>
-    function openPopup(popupType) {
-      document.getElementById(popupType + '-popup').style.display = 'flex';
+    function showSignUp() {
+      document.getElementById('signupPopup').style.display = 'flex';
     }
 
-    function closePopup() {
-      document.querySelectorAll('.popup-container').forEach(popup => popup.style.display = 'none');
+    function hideSignUp() {
+      document.getElementById('signupPopup').style.display = 'none';
+    }
+
+    function showLogin() {
+      document.getElementById('loginPopup').style.display = 'flex';
+    }
+
+    function hideLogin() {
+      document.getElementById('loginPopup').style.display = 'none';
     }
   </script>
 </body>
